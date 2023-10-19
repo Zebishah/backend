@@ -10,11 +10,7 @@ let jwt_secret = process.env.JWT_SECRET;
 let success = null;
 let e_success = true;
 router.post(
-      "/signUp", app.use(function (req, res, next) {
-            res.header("Access-Control-Allow-Origin", "*");
-            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-            next();
-      }),
+      "/signUp",
       [
             body("name", "Please enter a valid name").isLength({ max: 14 }),
             body("Email", "Please enter a valid Email").isEmail(),
@@ -66,11 +62,7 @@ router.post(
       }
 );
 router.post(
-      "/signIn", app.use(function (req, res, next) {
-            res.header("Access-Control-Allow-Origin", "*");
-            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-            next();
-      }),
+      "/signIn",
       [
 
             body("Email", "Please enter a valid Email").isEmail(),
@@ -135,11 +127,7 @@ router.post(
 
 
 router.get(
-      "/fetchUser", app.use(function (req, res, next) {
-            res.header("Access-Control-Allow-Origin", "*");
-            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-            next();
-      }),
+      "/fetchUser",
 
       async (req, res) => {
 
