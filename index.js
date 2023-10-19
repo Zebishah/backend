@@ -6,7 +6,7 @@ var cors = require('cors')
 app.use(cors({
     origin: ["https://front-end-jade-six.vercel.app"],
     methods: ["POST", "GET", "POST", "PUT"],
-    credentials: false
+    credentials: true
 }))
 app.use(express.json())
 const port = 5000;
