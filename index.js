@@ -2,8 +2,13 @@ const connectDB = require("./db");
 const express = require('express');
 const app = express();
 require('dotenv').config();
+var j = process.env.REACT_APP_FRONT_URL;
 var cors = require('cors')
-app.use(cors())
+app.use(cors({
+    origin: j,
+    methods: ["POST", "GET", "POST", "PUT"],
+    credentials: true
+}))
 app.use(express.json())
 const port = 5000;
 connectDB();
