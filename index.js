@@ -1,11 +1,10 @@
-
 const connectDB = require("./db");
 const express = require('express');
 const app = express();
 require('dotenv').config();
 var cors = require('cors')
 app.use(cors({
-    origin: ["https://front-end-jade-six.vercel.app"],
+    origin: "https://front-end-jade-six.vercel.app",
     credentials: true
 }))
 app.use(express.json())
