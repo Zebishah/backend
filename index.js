@@ -8,10 +8,14 @@ app.use(cors({
     methods: ["POST", "GET", "POST", "PUT"],
     credentials: true
 }))
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+})
 app.use(express.json())
 const port = 5000;
 connectDB();
-let host = process.env.REACT_APP_API_HOST
 app.use(`/api/auth`, require('./routes/auth'))
 app.use(`/api/notes`, require('./routes/notes'))
 app.listen(port, () => {
