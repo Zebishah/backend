@@ -1,6 +1,6 @@
  {
  "rewrites":  [
-       {"source": "/api/(.*)", "destination": "https://backend-sigma-olive.vercel.app/api/$1"},
+       {"source": "/(.*)", "destination": "https://backend-sigma-olive.vercel.app"},
     {"source": "/(.*)", "destination": "/index.html"}
     ]
 }
