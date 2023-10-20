@@ -1,5 +1,9 @@
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config({ path: __dirname + '/.env' });
+}
 const connectDB = require("./db");
 const express = require('express');
+
 const app = express();
 app.use(express.json())
 app.use((req, res, next) => {
@@ -14,8 +18,18 @@ app.use((req, res, next) => {
     next();
 });
 
-require('dotenv').config();
+app.use(express.static(path.join(__dirname, "../front-end/build")));
 
+app.get("*", function (_, res) {
+    res.sendFile(
+        path.join(__dirname, "../frontend/build/index.html"),
+        function (err) {
+            if (err) {
+                res.status(500).send(err)
+            }
+        }
+    )
+})
 const port = 5000;
 connectDB();
 app.use(`/api/auth`, require('./routes/auth'))
