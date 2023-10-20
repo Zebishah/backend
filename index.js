@@ -3,19 +3,10 @@ const express = require('express');
 const app = express();
 require('dotenv').config();
 var cors = require('cors')
-const allowedOrigins = ['https://front-end-jade-six.vercel.app'];
 app.use(cors({
-    origin: (origin, callback) => {
-        if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
-    methods: 'GET,POST,PUT,DELETE',
-    allowedHeaders: 'Content-Type,Authorization',
-    exposedHeaders: 'Content-Length',
-    credentials: true,
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
 }));
 
 app.use(express.json())
