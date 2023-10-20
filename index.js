@@ -4,9 +4,11 @@ const app = express();
 require('dotenv').config();
 var cors = require('cors')
 app.use(cors({
-    origin: "*",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true
+    origin: 'https://your-frontend-domain.com', // Replace with your frontend's domain.
+    methods: 'GET, POST, PUT, DELETE',
+    allowedHeaders: 'Content-Type, Authorization',
+    exposedHeaders: 'Content-Length',
+    credentials: true,
 }));
 
 app.use(express.json())
