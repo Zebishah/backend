@@ -1,17 +1,21 @@
 const connectDB = require("./db");
 const express = require('express');
 const app = express();
-require('dotenv').config();
-var cors = require('cors')
-app.use(cors({
-    origin: 'https://your-frontend-domain.com', // Replace with your frontend's domain.
-    methods: 'GET, POST, PUT, DELETE',
-    allowedHeaders: 'Content-Type, Authorization',
-    exposedHeaders: 'Content-Length',
-    credentials: true,
-}));
-
 app.use(express.json())
+app.use((req, res, next) => {
+    // Set the CORS headers here to allow or deny cross-origin requests.
+    res.header('Access-Control-Allow-Origin', 'https://your-frontend-domain.com');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.header('Access-Control-Expose-Headers', 'Content-Length');
+    res.header('Access-Control-Allow-Credentials', true);
+
+    // Call the 'next' function to pass the request to the next middleware or route handler.
+    next();
+});
+
+require('dotenv').config();
+
 const port = 5000;
 connectDB();
 app.use(`/api/auth`, require('./routes/auth'))
